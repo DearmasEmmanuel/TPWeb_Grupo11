@@ -1,0 +1,9 @@
+D:\PROGRAMACION\TpProgramacion3\Tp_Web_grupo11\Tp_Web_Grupo11\Business\bin\Debug\Business.dll
+D:\PROGRAMACION\TpProgramacion3\Tp_Web_grupo11\Tp_Web_Grupo11\Business\bin\Debug\Business.pdb
+D:\PROGRAMACION\TpProgramacion3\Tp_Web_grupo11\Tp_Web_Grupo11\Business\bin\Debug\Dominio.dll
+D:\PROGRAMACION\TpProgramacion3\Tp_Web_grupo11\Tp_Web_Grupo11\Business\bin\Debug\Dominio.pdb
+D:\PROGRAMACION\TpProgramacion3\Tp_Web_grupo11\Tp_Web_Grupo11\Business\obj\Debug\Business.csproj.AssemblyReference.cache
+D:\PROGRAMACION\TpProgramacion3\Tp_Web_grupo11\Tp_Web_Grupo11\Business\obj\Debug\Business.csproj.CoreCompileInputs.cache
+D:\PROGRAMACION\TpProgramacion3\Tp_Web_grupo11\Tp_Web_Grupo11\Business\obj\Debug\Business.csproj.CopyComplete
+D:\PROGRAMACION\TpProgramacion3\Tp_Web_grupo11\Tp_Web_Grupo11\Business\obj\Debug\Business.dll
+D:\PROGRAMACION\TpProgramacion3\Tp_Web_grupo11\Tp_Web_Grupo11\Business\obj\Debug\Business.pdb
