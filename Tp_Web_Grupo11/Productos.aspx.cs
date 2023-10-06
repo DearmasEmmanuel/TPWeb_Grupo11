@@ -14,6 +14,7 @@ namespace Tp_Web_Grupo11
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int id;
 
             if (!IsPostBack)
             {
@@ -28,6 +29,41 @@ namespace Tp_Web_Grupo11
                 ddCategoria.DataSource = CategoriaBusiness.List();
                 ddCategoria.DataBind();
             }
+            if (Request.QueryString["id"] != null)
+            {
+                id = int.Parse(Request.QueryString["id"].ToString());
+                ArticuloBusiness articuloBusiness = new ArticuloBusiness();
+                List<Articulo> articulos = articuloBusiness.List();
+                
+                
+                Articulo seleccionado = articulos.Find(x => x.Id == id);
+
+               
+                if (seleccionado != null)
+                {
+                    
+                    TxtNombre.Text = seleccionado.Nombre;
+                    TxtDescripcion.Text = seleccionado.Descripcion;
+                    TxtCodigo.Text = seleccionado.Codigo;
+                    ddMarca.Text = seleccionado.Marca.ToString();
+                    ddCategoria.Text= seleccionado.Categoria.ToString();
+                    txtImagenUrl.Text = seleccionado.Imagen.FirstOrDefault()?.ImagenUrl.ToString();
+                    
+
+
+
+
+
+                    decimal precioDecimal = seleccionado.Precio;
+
+                    TxtPrecio.Text = precioDecimal.ToString();
+
+
+
+                }
+
+            }
+          
         }
 
        

@@ -21,13 +21,18 @@
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" CssClass="form-control" for="exampleCheck1">Check me out</label>
+            <label class="form-check-label" CssClass="form-control" for="exampleCheck1">Validacion de Persona</label>
+            <p>-----------------------</p>
+            <p>usuario:admin</p>
+            <p>contraseña:1324</p>
         </div>
 
        
         <asp:Button ID="Button1" Onclick="Button1_Click" CssClass="btn btn-primary" runat="server" Text="Aceptar" />
     </div>
     <div class="col-4"></div>
+
 </div>
 </div>
+
 </asp:Content>

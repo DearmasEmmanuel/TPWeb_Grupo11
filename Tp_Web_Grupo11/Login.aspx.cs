@@ -16,12 +16,12 @@ namespace Tp_Web_Grupo11
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string admin = "sudo";
+            string admin = "admin";
             string contrasena = "1234";
 
             if(admin == txtUsuario.Text && contrasena == TxtContraseña.Text)
             {
-                Response.Redirect("Productos.aspx");
+                Response.Redirect("admin.aspx");
                 
             }
        
