@@ -24,7 +24,7 @@
             <label class="form-check-label" CssClass="form-control" for="exampleCheck1">Validacion de Persona</label>
             <p>-----------------------</p>
             <p>usuario:admin</p>
-            <p>contraseña:1324</p>
+            <p>contraseña:1234</p>
         </div>
 
        

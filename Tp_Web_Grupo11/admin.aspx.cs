@@ -19,12 +19,20 @@ namespace Tp_Web_Grupo11
 
         }
 
+
+
+
         protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             //var algo= dgvProductos.SelectedRow.Cells[0].Text;
             var id = dgvProductos.SelectedDataKey.Value.ToString();
-            Response.Redirect("Productos.aspx?id=" + id);
+            Response.Redirect("adminProductoModificar.aspx?id=" + id);
 
+        }
+
+        protected void btnNuevo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("adminProductoNuevo.aspx");
         }
     }
 }
