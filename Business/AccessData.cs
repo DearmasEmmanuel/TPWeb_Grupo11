@@ -108,5 +108,13 @@ namespace Business
             this.connection.Close();
         }
     }
-}
+
+
+        public void AddParameter(string parameterName, object value)
+        {
+            var parameter = new SqlParameter(parameterName, value);
+            this.command.Parameters.Add(parameter);
+        }
+
+    }
 }

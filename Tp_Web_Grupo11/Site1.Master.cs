@@ -29,5 +29,9 @@ namespace Tp_Web_Grupo11
             Response.Redirect("Login.aspx", false);
         }
 
+        protected void LbCarrito_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Carrito.aspx", false);
+        }
     }
 }

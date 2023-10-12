@@ -14,8 +14,7 @@ namespace Tp_Web_Grupo11
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticuloBusiness articuloBusiness = new ArticuloBusiness();
-            dgvProductos.DataSource = articuloBusiness.List();
-            dgvProductos.DataBind();
+           
 
             if (!IsPostBack)
             {
@@ -23,9 +22,7 @@ namespace Tp_Web_Grupo11
                 // y asignarlos a la variable 'articulos' como una lista de objetos Articulo.
                 List<Articulo> articulos = ObtenerArticulosDesdeLaBaseDeDatos(); // Debes implementar esta función.
 
-                // Asigna la lista de 'articulos' al GridView
-                dgvProductos.DataSource = articulos;
-                dgvProductos.DataBind();
+              
 
                 // Asigna la lista de 'articulos' al carrusel
                 rptProductos.DataSource = articulos;
@@ -35,13 +32,7 @@ namespace Tp_Web_Grupo11
 
         }
 
-        protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //var algo= dgvProductos.SelectedRow.Cells[0].Text;
-            var id= dgvProductos.SelectedDataKey.Value.ToString();
-            Response.Redirect("Productos.aspx?id=" + id);
-            
-        }
+    
 
 
 
@@ -56,5 +47,31 @@ namespace Tp_Web_Grupo11
             // Llena 'articulos' con datos de la base de datos.
             return articulos;
         }
+
+        protected void AgregarAlCarrito_Click(object sender, EventArgs e)
+
+        {
+            ArticuloBusiness articuloBusiness = new ArticuloBusiness();
+            Button btn = (Button)sender;
+            //GridViewRow row = (GridViewRow)btn.NamingContainer;
+            int productoId = Convert.ToInt32(btn.CommandArgument);
+
+            // Obtener el producto seleccionado según el ID
+
+            Articulo producto = new Articulo();
+            producto = articuloBusiness.ObtenerArticuloPorId(productoId);
+
+            // Agregar el producto al carrito (por ejemplo, una lista)
+            List<Articulo> carrito = (List<Articulo>)Session["Carrito"] ?? new List<Articulo>();
+            carrito.Add(producto);
+            Session["Carrito"] = carrito;
+
+            lblMensaje.Text = "Este es mi mensaje dinámico";
+            lblMensaje.CssClass = "visible"; // Muestra el mensaje
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+
+        }
     }
 }
+
+

@@ -16,3 +16,12 @@ C:\Users\Usuario\Desktop\Programacion_3\Repositorio\Remoto\TPWeb_Grupo11\Busines
 C:\Users\Usuario\Desktop\Programacion_3\Repositorio\Remoto\TPWeb_Grupo11\Business\obj\Debug\Business.csproj.CopyComplete
 C:\Users\Usuario\Desktop\Programacion_3\Repositorio\Remoto\TPWeb_Grupo11\Business\obj\Debug\Business.dll
 C:\Users\Usuario\Desktop\Programacion_3\Repositorio\Remoto\TPWeb_Grupo11\Business\obj\Debug\Business.pdb
+D:\PROGRAMACION\TpProgramacion3\TpManu\TPWeb_Grupo11\Business\bin\Debug\Business.dll
+D:\PROGRAMACION\TpProgramacion3\TpManu\TPWeb_Grupo11\Business\bin\Debug\Business.pdb
+D:\PROGRAMACION\TpProgramacion3\TpManu\TPWeb_Grupo11\Business\bin\Debug\Dominio.dll
+D:\PROGRAMACION\TpProgramacion3\TpManu\TPWeb_Grupo11\Business\bin\Debug\Dominio.pdb
+D:\PROGRAMACION\TpProgramacion3\TpManu\TPWeb_Grupo11\Business\obj\Debug\Business.csproj.AssemblyReference.cache
+D:\PROGRAMACION\TpProgramacion3\TpManu\TPWeb_Grupo11\Business\obj\Debug\Business.csproj.CoreCompileInputs.cache
+D:\PROGRAMACION\TpProgramacion3\TpManu\TPWeb_Grupo11\Business\obj\Debug\Business.csproj.CopyComplete
+D:\PROGRAMACION\TpProgramacion3\TpManu\TPWeb_Grupo11\Business\obj\Debug\Business.dll
+D:\PROGRAMACION\TpProgramacion3\TpManu\TPWeb_Grupo11\Business\obj\Debug\Business.pdb

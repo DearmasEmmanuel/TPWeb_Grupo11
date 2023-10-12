@@ -265,5 +265,53 @@ namespace Business
                 data.Close();
             }
         }
+        public Articulo ObtenerArticuloPorId(int id)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                data.SetQuery("SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, m.Id AS IdMarca, m.Descripcion AS Marca, c.Id as IdCategoria, c.Descripcion AS Categoria, i.Id AS IdImagen, i.IdArticulo, i.ImagenUrl AS Imagen, a.Precio FROM ARTICULOS a INNER JOIN MARCAS m ON a.IdMarca = m.Id INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id LEFT JOIN IMAGENES i ON a.Id = i.IdArticulo WHERE a.Id = @Id");
+                data.AddParameter("@Id", id); // Agrega el parámetro para el ID
+                data.ExecuteQuery();
+
+                if (data.Reader.Read())
+                {
+                    Articulo articulo = new Articulo
+                    {
+                        Id = (int)data.Reader["Id"],
+                        Codigo = data.Reader["Codigo"].ToString(),
+                        Nombre = data.Reader["Nombre"].ToString(),
+                        Descripcion = (string)data.Reader["Descripcion"],
+                        Marca = new Marca
+                        {
+                            Id = (int)data.Reader["IdMarca"],
+                            Descripcion = data.Reader["Marca"].ToString()
+                        },
+                        Categoria = new Categoria
+                        {
+                            Id = (int)data.Reader["IdCategoria"],
+                            Descripcion = data.Reader["Categoria"].ToString()
+                        },
+                        Precio = Convert.ToDecimal(data.Reader["Precio"]),
+                        Imagen = ImagenBusiness.List((int)data.Reader["Id"])
+                    };
+
+                    return articulo;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el artículo por ID.", ex);
+            }
+            finally
+            {
+                data.Close();
+            }
+
+            return null; // Retorna null si no se encuentra el artículo
+        }
+
+
+
     }
 }

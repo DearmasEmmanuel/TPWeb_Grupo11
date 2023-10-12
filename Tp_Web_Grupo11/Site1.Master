@@ -45,6 +45,7 @@
 
 
                         <asp:LinkButton ID="LinkButton1" CssClass="nav-link me-2" runat="server" OnClick="LinkButton1_Click">Usuario</asp:LinkButton>
+                        <asp:LinkButton ID="LbCarrito" CssClass="nav-link me-2" runat="server" OnClick="LbCarrito_Click">Carrito</asp:LinkButton>
                     </div>
                 </div>
             </nav>

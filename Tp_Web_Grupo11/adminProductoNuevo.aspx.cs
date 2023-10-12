@@ -19,6 +19,8 @@ namespace Tp_Web_Grupo11
             if (!IsPostBack)
             {
                 ddMarca.DataSource = MarcaBusiness.List();
+                //ddMarca.DataTextField = "Descripcion";
+                //ddMarca.DataValueField = "Id";
                 ddMarca.DataBind();
             }
 

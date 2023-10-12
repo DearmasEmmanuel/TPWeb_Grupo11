@@ -73,28 +73,28 @@
             left: 10px;
             z-index: 1; /* Asegura que la etiqueta esté encima de la imagen */
         }
+
+
+        .oculto {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+
+
+
     </style>
-
-    <div class="container">
-        <asp:GridView ID="dgvProductos" CssClass="table table-striped" DataKeyNames="Id" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" runat="server" AutoGenerateColumns="false">
-            <Columns>
-                <asp:BoundField HeaderText="Id" DataField="Id" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
-                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
-                <asp:BoundField HeaderText="Marca" DataField="Marca" />
-                <asp:BoundField HeaderText="Precio" DataField="Precio" />
-                <asp:BoundField HeaderText="Imagen" DataField="Imagen" />
+    
+    
+    
+   
 
 
 
-            </Columns>
-
-
-
-        </asp:GridView>
-    </div>
-
-
+  
 
 
     <div class="container">
@@ -146,14 +146,13 @@
 
                                     </div>
                                     <div>
-                                        <a href="#!" class="btn btn-primary btn-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round" class="feather feather-plus">
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg>
-                                            Agregar
-                                        </a>
+
+                                        <asp:Button ID="AgregarAlCarrito" runat="server" CssClass="btn btn-primary btn-sm" Text="Agregar al carrito" OnClick="AgregarAlCarrito_Click" CommandArgument='<%# Eval("Id") %>' />
+
+
+
+                                  
+        
                                     </div>
                                 </div>
                             </div>
@@ -168,6 +167,25 @@
    </div>
 
 
+
+
+
+
+ <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Mensaje</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                
+
+                <p><asp:Label ID="lblMensaje" runat="server" CssClass="oculto"></asp:Label></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
