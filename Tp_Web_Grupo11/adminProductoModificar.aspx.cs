@@ -20,16 +20,17 @@ namespace Tp_Web_Grupo11
             if (!IsPostBack)
             {
                 ddMarca.DataSource = MarcaBusiness.List();
+                ddMarca.DataTextField = "Descripcion";
+                ddMarca.DataValueField = "Id";
                 ddMarca.DataBind();
             }
-
-
 
             if (!IsPostBack)
             {
                 ddCategoria.DataSource = CategoriaBusiness.List();
                 ddCategoria.DataBind();
             }
+
             if (Request.QueryString["id"] != null)
             {
                 id = int.Parse(Request.QueryString["id"].ToString());
@@ -43,69 +44,84 @@ namespace Tp_Web_Grupo11
                 if (seleccionado != null)
                 {
 
+                    TxtId.Text = seleccionado.Id.ToString();
                     TxtNombre.Text = seleccionado.Nombre;
                     TxtDescripcion.Text = seleccionado.Descripcion;
                     TxtCodigo.Text = seleccionado.Codigo;
-                    ddMarca.Text = seleccionado.Marca.ToString();
+                    ddMarca.Text = seleccionado.Marca.Id.ToString();
                     ddCategoria.Text = seleccionado.Categoria.ToString();
                     txtImagenUrl.Text = seleccionado.Imagen.FirstOrDefault()?.ImagenUrl.ToString();
-
-
-
-
-
 
                     decimal precioDecimal = seleccionado.Precio;
 
                     TxtPrecio.Text = precioDecimal.ToString();
 
-
-
                 }
 
             }
-
-
-
-
-
-
 
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulo articulo = new Articulo();
 
-            ArticuloBusiness articuloBusiness = new ArticuloBusiness();
+            ArticuloBusiness business = new ArticuloBusiness();
+            Articulo seleccionado = new Articulo();
 
-            articulo.Codigo = TxtCodigo.Text;
-            articulo.Nombre = TxtNombre.Text;
-            articulo.Descripcion = TxtDescripcion.Text;
-
-            // Obtener la descripción seleccionada de ddMarca y buscar la Marca correspondiente en la lista de marcas.
-            string marcaDescripcionSeleccionada = ddMarca.SelectedValue;
-            string categoriaelecionada = ddCategoria.SelectedValue;
-
-            Debug.WriteLine("Marca seleccionada: " + marcaDescripcionSeleccionada);
-            Debug.WriteLine("Categoria seleccionada: " + categoriaelecionada);
-
-            Marca marcaSeleccionada = ObtenerMarcaPorDescripcion(marcaDescripcionSeleccionada);
-            Categoria categoria1 = ObtenerCategoriaPorDescripcion(categoriaelecionada);
-
-
-            articulo.Marca = marcaSeleccionada;
-            articulo.Categoria = categoria1;
-
-            Imagen nuevaImagen = new Imagen
+            seleccionado.Id = int.Parse(TxtId.Text);
+            seleccionado.Codigo = TxtCodigo.Text;
+            seleccionado.Nombre = TxtNombre.Text;
+            seleccionado.Descripcion = TxtDescripcion.Text;
+            Marca marca = new Marca
             {
-                IdArticulo = articulo.Id,
-                ImagenUrl = txtImagenUrl.Text
+                Id = int.Parse(ddMarca.SelectedValue),
+                Descripcion = "NN"
             };
-            articulo.Imagen = new List<Imagen> { nuevaImagen };
-            articulo.Precio = decimal.Parse(TxtPrecio.Text);
-            articuloBusiness.Modificar(articulo,articulo);
+            seleccionado.Marca = marca;
+                //seleccionado.Categoria.Descripcion = ddCategoria.SelectedValue.ToString();
+                if (txtImagenUrl.Text != null)
+            {
+                Imagen Imagen = new Imagen
+                {
+                    IdArticulo = int.Parse(TxtId.Text),
+                    ImagenUrl = txtImagenUrl.Text
+                };
+                seleccionado.Imagen = new List<Imagen> { Imagen };
+
+            }
+            seleccionado.Precio = decimal.Parse(TxtPrecio.Text);
+            business.Modificar(seleccionado, seleccionado);
             Response.Redirect("admin.aspx");
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+
+            ArticuloBusiness business = new ArticuloBusiness();
+            Articulo seleccionado = new Articulo();
+
+            seleccionado.Id = int.Parse(TxtId.Text);
+            //seleccionado.Codigo = TxtCodigo.Text;
+            //seleccionado.Nombre = TxtNombre.Text;
+            //seleccionado.Descripcion = TxtDescripcion.Text;
+            //seleccionado.Marca.Descripcion = ddMarca.SelectedValue;
+            //seleccionado.Categoria.Descripcion = ddCategoria.SelectedValue;
+            if (txtImagenUrl.Text != null)
+            {
+                Imagen Imagen = new Imagen
+                {
+                    IdArticulo = int.Parse(TxtId.Text),
+                    ImagenUrl = txtImagenUrl.Text
+                };
+                seleccionado.Imagen = new List<Imagen> { Imagen };
+
+            }
+            //seleccionado.Precio = int.Parse(TxtPrecio.Text);
+
+            business.Eliminar(seleccionado);
+            Response.Redirect("admin.aspx");
+
         }
 
         // Esta función busca una marca por su descripción en la lista de marcas.

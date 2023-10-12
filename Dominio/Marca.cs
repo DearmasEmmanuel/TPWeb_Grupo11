@@ -16,9 +16,9 @@ namespace Dominio
             return marcas.FirstOrDefault();
         }
 
-        public override string ToString()
+        /*public override string ToString()
         {
             return Descripcion;
-        }
+        }*/
     }
 }

@@ -19,6 +19,8 @@ namespace Tp_Web_Grupo11
             if (!IsPostBack)
             {
                 ddMarca.DataSource = MarcaBusiness.List();
+                ddMarca.DataTextField = "Descripcion";
+                ddMarca.DataValueField = "Id";
                 ddMarca.DataBind();
             }
 
@@ -49,26 +51,15 @@ namespace Tp_Web_Grupo11
                     ddCategoria.Text= seleccionado.Categoria.ToString();
                     txtImagenUrl.Text = seleccionado.Imagen.FirstOrDefault()?.ImagenUrl.ToString();
                     
-
-
-
-
-
                     decimal precioDecimal = seleccionado.Precio;
 
                     TxtPrecio.Text = precioDecimal.ToString();
-
-
 
                 }
 
             }
           
         }
-
-       
-
-
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {

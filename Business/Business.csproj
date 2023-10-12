@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="ArticuloBusiness.cs" />
     <Compile Include="CategoriaBusiness.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="AccessData.cs" />
     <Compile Include="ImagenBusiness.cs" />
     <Compile Include="MarcaBusiness.cs" />
