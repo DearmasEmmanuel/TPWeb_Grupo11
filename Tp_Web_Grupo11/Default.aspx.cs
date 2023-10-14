@@ -14,33 +14,36 @@ namespace Tp_Web_Grupo11
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticuloBusiness articuloBusiness = new ArticuloBusiness();
-           
+            string terminoBusqueda = Session["TerminoBusqueda"] as string;
 
             if (!IsPostBack)
             {
-                // Aquí deberías obtener tus datos de la base de datos o de donde sea que los almacenes
-                // y asignarlos a la variable 'articulos' como una lista de objetos Articulo.
-                List<Articulo> articulos = ObtenerArticulosDesdeLaBaseDeDatos(); // Debes implementar esta función.
+                List<Articulo> resultados;
 
-              
+                if (string.IsNullOrEmpty(terminoBusqueda))
+                {
+                    
+                    resultados = ObtenerArticulosDesdeLaBaseDeDatos();
+                }
+                else
+                {
+                    
+                    resultados = articuloBusiness.Buscar(terminoBusqueda);
+                }
 
-                // Asigna la lista de 'articulos' al carrusel
-                rptProductos.DataSource = articulos;
+                
+                rptProductos.DataSource = resultados;
                 rptProductos.DataBind();
             }
-
-
         }
 
-    
+
 
 
 
         private List<Articulo> ObtenerArticulosDesdeLaBaseDeDatos()
         {
-            // Aquí debes implementar la lógica para obtener los datos de los Articulos
-            // desde tu base de datos y retornarlos como una lista de objetos Articulo.
-            // Por ejemplo:
+           
             ArticuloBusiness articuloBusiness = new ArticuloBusiness();
             //List<Articulo> articulos = articuloBusiness.List();
             List<Articulo> articulos = articuloBusiness.List();
@@ -66,11 +69,15 @@ namespace Tp_Web_Grupo11
             carrito.Add(producto);
             Session["Carrito"] = carrito;
 
-            lblMensaje.Text = "Este es mi mensaje dinámico";
+            lblMensaje.Text = "¡Producto agregado al carrito correctamente!";
             lblMensaje.CssClass = "visible"; // Muestra el mensaje
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
 
         }
+       
+
+
+
     }
 }
 

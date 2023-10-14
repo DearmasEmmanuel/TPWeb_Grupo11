@@ -4,8 +4,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using Dominio;
 
+
+
 namespace Business
+
 {
+    
     public class ArticuloBusiness
     {
         public List<Articulo> List()
@@ -311,6 +315,25 @@ namespace Business
             return null; // Retorna null si no se encuentra el artículo
         }
 
+        public List<Articulo> Buscar(string terminoBusqueda)
+        {
+            // Realizar la búsqueda en la base de datos y obtener una lista de productos
+            List<Articulo> resultados = BuscarProductosEnBaseDeDatos(terminoBusqueda);
+
+            return resultados;
+        }
+        private List<Articulo> BuscarProductosEnBaseDeDatos(string terminoBusqueda)
+        {
+            AccessData data = new AccessData();
+            data.SetQuery("SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, m.Id AS IdMarca, m.Descripcion AS Marca, c.Id as IdCategoria, c.Descripcion AS Categoria, i.Id AS IdImagen, i.IdArticulo, i.ImagenUrl AS Imagen, a.Precio FROM ARTICULOS a INNER JOIN MARCAS m ON a.IdMarca = m.Id INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id LEFT JOIN IMAGENES i ON a.Id = i.IdArticulo WHERE a.Id = @Id");
+            data.AddParameter("@Nombre", terminoBusqueda); // Agrega el parámetro para el ID
+            data.ExecuteQuery();
+
+            List<Articulo> resultados = new List<Articulo>();
+            // Implementa la búsqueda y llena la lista de resultados
+
+            return resultados;
+        }
 
 
     }

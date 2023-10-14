@@ -19,7 +19,7 @@ namespace Tp_Web_Grupo11
 
                 // Calcular el precio total y la cantidad total
                 decimal precioTotal = 0;
-                int cantidadTotal = 0;
+                int cantidadTotal = Convert.ToInt32(Session["CantidadTotal"] ?? 0);
 
                 if (carrito != null)
                 {
@@ -34,10 +34,12 @@ namespace Tp_Web_Grupo11
                 // Asignar la lista de productos al GridView
                 dgvCarrito.DataSource = carrito;
                 dgvCarrito.DataBind();
-
+                
                 // Mostrar la cantidad y el precio total
                 lblCantidadTotal.Text = cantidadTotal.ToString();
                 lblPrecioTotal.Text = precioTotal.ToString("C"); // Formatear como moneda
+                
+
             }
         }
     }
