@@ -148,12 +148,12 @@ namespace Business
                     query += " Codigo = @Code,";
                     parameters.Add(new SqlParameter("@Code", updatedItem.Codigo));
                 }
-                if (oldItem.Categoria != updatedItem.Categoria)
+                if (oldItem.Categoria.Id != updatedItem.Categoria.Id)
                 {
                     query += " IdCategoria = @Category,";
                     parameters.Add(new SqlParameter("@Category", updatedItem.Categoria.Id));
                 }
-                if (oldItem.Marca != updatedItem.Marca)
+                if (oldItem.Marca.Id != updatedItem.Marca.Id)
                 {
                     query += " IdMarca = @Brand,";
                     parameters.Add(new SqlParameter("@Brand", updatedItem.Marca.Id));
@@ -190,58 +190,7 @@ namespace Business
                 data.Close();
             }
         }
-        //public void Modificar(Articulo articulo)
-        //{
-        //    AccessData data = new AccessData();
-        //    List<SqlParameter> parameters = new List<SqlParameter>();
-        //    try
-        //    {
-        //        string query = @"
-        //    UPDATE ARTICULOS 
-        //    SET Codigo = @Codigo, 
-        //        Nombre = @Nombre, 
-        //        Descripcion = @Descripcion, 
-        //        Precio = @Precio, 
-        //        IdMarca = @IdMarca, 
-        //        IdCategoria = @IdCategoria
-        //    WHERE Id = @Id";
-
-        //        parameters.Add(new SqlParameter("@Codigo", articulo.Codigo));
-        //        parameters.Add(new SqlParameter("@Nombre", articulo.Nombre));
-        //        parameters.Add(new SqlParameter("@Descripcion", articulo.Descripcion));
-        //        parameters.Add(new SqlParameter("@Precio", articulo.Precio));
-        //        parameters.Add(new SqlParameter("@IdMarca", articulo.Marca.Id));
-        //        parameters.Add(new SqlParameter("@IdCategoria", articulo.Categoria.Id));
-        //        parameters.Add(new SqlParameter("@Id", articulo.Id));
-
-        //        data.SetQuery(query, parameters);
-
-        //        // Actualizar todas las imágenes en la tabla IMAGENES en una sola consulta
-        //        StringBuilder updateImagenQuery = new StringBuilder();
-        //        updateImagenQuery.Append("UPDATE IMAGENES SET ImagenUrl = CASE IdArticulo ");
-
-        //        for (int i = 0; i < articulo.Imagen.Count; i++)
-        //        {
-        //            updateImagenQuery.Append($"WHEN {articulo.Id} THEN @ImagenUrl{i} ");
-        //            parameters.Add(new SqlParameter($"@ImagenUrl{i}", articulo.Imagen[i].ImagenUrl));
-        //        }
-
-        //        updateImagenQuery.Append("ELSE ImagenUrl END");
-
-        //        data.SetQuery(updateImagenQuery.ToString(), parameters);
-
-        //        // Ejecutar la actualización
-        //        data.ExecuteNonQuery();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("Error al modificar el artículo.", ex);
-        //    }
-        //    finally
-        //    {
-        //        data.Close();
-        //    }
-        //}
+        
         public int Eliminar(Articulo articulo)
         {
             AccessData data = new AccessData();
@@ -311,7 +260,6 @@ namespace Business
             {
                 data.Close();
             }
-
             return null; // Retorna null si no se encuentra el artículo
         }
 
@@ -334,7 +282,5 @@ namespace Business
 
             return resultados;
         }
-
-
     }
 }

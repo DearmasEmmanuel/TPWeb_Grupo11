@@ -97,9 +97,11 @@ namespace Business
                             flagExist = true;
                             if (updatedImages[i].ImagenUrl != imageOld.ImagenUrl)
                             {
-                                query += $"UPDATE IMAGES SET ImagenUrl = @UrlUpdate{i} WHERE Id = @Id{i} ";
-                                parameters.Add(new SqlParameter($"@UrlUpdate{i}", updatedImages[i].ImagenUrl));
-                                parameters.Add(new SqlParameter($"@Id{i}", updatedImages[i].Id));
+                                query += "UPDATE IMAGENES SET";
+                                query += " ImagenUrl = @UrlUpdate";
+                                parameters.Add(new SqlParameter("@UrlUpdate", updatedImages[i].ImagenUrl));
+                                query += " WHERE Id = @Id";
+                                parameters.Add(new SqlParameter("@Id", updatedImages[i].Id));
                             }
                             break;
                         }
@@ -119,7 +121,7 @@ namespace Business
                 }
                 if (lstToAdd.Count > 0)
                 {
-                    query += " INSERT INTO IMAGES (IdArticulo, ImagenUrl) VALUES ";
+                    query += " INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES ";
                     for (int i = 0; i < lstToAdd.Count; i++)
                     {
                         query += $" (@IdArticulo, @UrlInsert{i}),";
@@ -131,7 +133,7 @@ namespace Business
 
                 if (lstToDelete.Count > 0)
                 {
-                    query += " DELETE FROM IMAGES WHERE ";
+                    query += " DELETE FROM IMAGENES WHERE ";
                     for (int i = 0; i < lstToDelete.Count; i++)
                     {
                         query += $@"Id = @Id{i} OR ";

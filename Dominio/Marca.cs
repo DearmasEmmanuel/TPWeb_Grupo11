@@ -13,12 +13,11 @@ namespace Dominio
 
         //public static Marca FirstOrDefault(List<Marca> marcas)
         //{
-            //return marcas.FirstOrDefault();
-       // }
-
-        public override string ToString()
-        {
-            return Descripcion;
-        }
+        //return marcas.FirstOrDefault();
+        // }
+        //public override string ToString()
+        //{
+        //    return Descripcion;
+        //}
     }
 }

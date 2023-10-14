@@ -28,33 +28,35 @@ namespace Tp_Web_Grupo11
             if (!IsPostBack)
             {
                 ddCategoria.DataSource = CategoriaBusiness.List();
+                ddCategoria.DataTextField = "Descripcion";
+                ddCategoria.DataValueField = "Id";
                 ddCategoria.DataBind();
             }
 
             if (Request.QueryString["id"] != null)
             {
-                id = int.Parse(Request.QueryString["id"].ToString());
-                ArticuloBusiness articuloBusiness = new ArticuloBusiness();
-                List<Articulo> articulos = articuloBusiness.List();
-
-
-                Articulo seleccionado = articulos.Find(x => x.Id == id);
-
-
-                if (seleccionado != null)
+                if (!IsPostBack)
                 {
+                    id = int.Parse(Request.QueryString["id"].ToString());
+                    ArticuloBusiness articuloBusiness = new ArticuloBusiness();
+                    List<Articulo> articulos = articuloBusiness.List();
 
-                    TxtId.Text = seleccionado.Id.ToString();
-                    TxtNombre.Text = seleccionado.Nombre;
-                    TxtDescripcion.Text = seleccionado.Descripcion;
-                    TxtCodigo.Text = seleccionado.Codigo;
-                    ddMarca.Text = seleccionado.Marca.Id.ToString();
-                    ddCategoria.Text = seleccionado.Categoria.ToString();
-                    txtImagenUrl.Text = seleccionado.Imagen.FirstOrDefault()?.ImagenUrl.ToString();
+                    Articulo seleccionado = articulos.Find(x => x.Id == id);
 
-                    decimal precioDecimal = seleccionado.Precio;
+                    if (seleccionado != null)
+                    {
+                        TxtId.Text = seleccionado.Id.ToString();
+                        TxtNombre.Text = seleccionado.Nombre;
+                        TxtDescripcion.Text = seleccionado.Descripcion;
+                        TxtCodigo.Text = seleccionado.Codigo;
+                        ddMarca.Text = seleccionado.Marca.Id.ToString();
+                        ddCategoria.Text = seleccionado.Categoria.Id.ToString();
+                        txtImagenUrl.Text = seleccionado.Imagen.FirstOrDefault()?.ImagenUrl.ToString();
 
-                    TxtPrecio.Text = precioDecimal.ToString();
+                        decimal precioDecimal = seleccionado.Precio;
+
+                        TxtPrecio.Text = precioDecimal.ToString();
+                    }
 
                 }
 
@@ -62,11 +64,15 @@ namespace Tp_Web_Grupo11
 
         }
 
-        protected void btnAceptar_Click(object sender, EventArgs e)
+        protected void btnModificar_Click(object sender, EventArgs e)
         {
+            ArticuloBusiness originalbusiness = new ArticuloBusiness();
+            Articulo original = new Articulo();
 
-            ArticuloBusiness business = new ArticuloBusiness();
+            ArticuloBusiness selecionadobusiness = new ArticuloBusiness();
             Articulo seleccionado = new Articulo();
+
+            original = originalbusiness.ObtenerArticuloPorId(int.Parse(TxtId.Text));
 
             seleccionado.Id = int.Parse(TxtId.Text);
             seleccionado.Codigo = TxtCodigo.Text;
@@ -75,29 +81,36 @@ namespace Tp_Web_Grupo11
             Marca marca = new Marca
             {
                 Id = int.Parse(ddMarca.SelectedValue),
-                Descripcion = "NN"
+                Descripcion = original.Marca.Descripcion,
             };
             seleccionado.Marca = marca;
-                //seleccionado.Categoria.Descripcion = ddCategoria.SelectedValue.ToString();
-                if (txtImagenUrl.Text != null)
+
+            Categoria categoria = new Categoria
+            {
+                Id = int.Parse(ddCategoria.SelectedValue),
+                Descripcion = original.Categoria.Descripcion,
+            };
+            seleccionado.Categoria = categoria;
+
+            if (txtImagenUrl.Text != null)
             {
                 Imagen Imagen = new Imagen
                 {
+                    Id = original.Imagen[0].Id,
                     IdArticulo = int.Parse(TxtId.Text),
                     ImagenUrl = txtImagenUrl.Text
                 };
                 seleccionado.Imagen = new List<Imagen> { Imagen };
-
             }
+
             seleccionado.Precio = decimal.Parse(TxtPrecio.Text);
-            business.Modificar(seleccionado, seleccionado);
+
+            selecionadobusiness.Modificar(original, seleccionado);
             Response.Redirect("admin.aspx");
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-
-
             ArticuloBusiness business = new ArticuloBusiness();
             Articulo seleccionado = new Articulo();
 

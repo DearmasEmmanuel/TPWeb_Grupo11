@@ -15,6 +15,7 @@
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
                 <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
+                <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
                 <asp:BoundField HeaderText="Precio" DataField="Precio" />
                 <asp:TemplateField HeaderText="Imagen">
                     <ItemTemplate>
@@ -23,7 +24,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:CommandField ShowSelectButton="true" SelectText="Modificar" HeaderText="Modificar" />
+                <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Modificar/Eliminar" />
 
             </Columns>
 

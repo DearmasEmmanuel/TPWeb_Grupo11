@@ -12,26 +12,22 @@ namespace Tp_Web_Grupo11
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             ArticuloBusiness articuloBusiness = new ArticuloBusiness();
             dgvProductos.DataSource = articuloBusiness.List();
             dgvProductos.DataBind();
 
+            dgvProductos.Columns[0].Visible = false;
         }
 
         protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             var id = dgvProductos.SelectedDataKey.Value.ToString();
             Response.Redirect("adminProductoModificar.aspx?id=" + id);
-
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-
             Response.Redirect("adminProductoNuevo.aspx");
-
         }
     }
 }

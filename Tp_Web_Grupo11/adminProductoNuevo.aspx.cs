@@ -19,48 +19,42 @@ namespace Tp_Web_Grupo11
             if (!IsPostBack)
             {
                 ddMarca.DataSource = MarcaBusiness.List();
-                //ddMarca.DataTextField = "Descripcion";
-                //ddMarca.DataValueField = "Id";
+                ddMarca.DataTextField = "Descripcion";
+                ddMarca.DataValueField = "Id";
                 ddMarca.DataBind();
             }
-
-
 
             if (!IsPostBack)
             {
                 ddCategoria.DataSource = CategoriaBusiness.List();
+                ddCategoria.DataTextField = "Descripcion";
+                ddCategoria.DataValueField = "Id";
                 ddCategoria.DataBind();
             }
+
             if (Request.QueryString["id"] != null)
             {
-                id = int.Parse(Request.QueryString["id"].ToString());
-                ArticuloBusiness articuloBusiness = new ArticuloBusiness();
-                List<Articulo> articulos = articuloBusiness.List();
-
-
-                Articulo seleccionado = articulos.Find(x => x.Id == id);
-
-
-                if (seleccionado != null)
+                if (!IsPostBack)
                 {
+                    id = int.Parse(Request.QueryString["id"].ToString());
+                    ArticuloBusiness articuloBusiness = new ArticuloBusiness();
+                    List<Articulo> articulos = articuloBusiness.List();
 
-                    TxtNombre.Text = seleccionado.Nombre;
-                    TxtDescripcion.Text = seleccionado.Descripcion;
-                    TxtCodigo.Text = seleccionado.Codigo;
-                    ddMarca.Text = seleccionado.Marca.ToString();
-                    ddCategoria.Text = seleccionado.Categoria.ToString();
-                    txtImagenUrl.Text = seleccionado.Imagen.FirstOrDefault()?.ImagenUrl.ToString();
+                    Articulo seleccionado = articulos.Find(x => x.Id == id);
 
+                    if (seleccionado != null)
+                    {
+                        TxtNombre.Text = seleccionado.Nombre;
+                        TxtDescripcion.Text = seleccionado.Descripcion;
+                        TxtCodigo.Text = seleccionado.Codigo;
+                        ddMarca.Text = seleccionado.Marca.ToString();
+                        ddCategoria.Text = seleccionado.Categoria.ToString();
+                        txtImagenUrl.Text = seleccionado.Imagen.FirstOrDefault()?.ImagenUrl.ToString();
 
+                        decimal precioDecimal = seleccionado.Precio;
 
-
-
-
-                    decimal precioDecimal = seleccionado.Precio;
-
-                    TxtPrecio.Text = precioDecimal.ToString();
-
-
+                        TxtPrecio.Text = precioDecimal.ToString();
+                    }
 
                 }
 
@@ -78,18 +72,17 @@ namespace Tp_Web_Grupo11
             articulo.Descripcion = TxtDescripcion.Text;
 
             // Obtener la descripción seleccionada de ddMarca y buscar la Marca correspondiente en la lista de marcas.
-            string marcaDescripcionSeleccionada = ddMarca.SelectedValue;
-            string categoriaelecionada = ddCategoria.SelectedValue;
+            string marcaDescripcionSeleccionada = ddMarca.SelectedItem.Text;
+            string categoriaelecionada = ddCategoria.SelectedItem.Text;
 
             Debug.WriteLine("Marca seleccionada: " + marcaDescripcionSeleccionada);
             Debug.WriteLine("Categoria seleccionada: " + categoriaelecionada);
 
             Marca marcaSeleccionada = ObtenerMarcaPorDescripcion(marcaDescripcionSeleccionada);
-            Categoria categoria1 = ObtenerCategoriaPorDescripcion(categoriaelecionada);
-
+            Categoria categoria = ObtenerCategoriaPorDescripcion(categoriaelecionada);
 
             articulo.Marca = marcaSeleccionada;
-            articulo.Categoria = categoria1;
+            articulo.Categoria = categoria;
 
             Imagen nuevaImagen = new Imagen
             {
@@ -119,4 +112,3 @@ namespace Tp_Web_Grupo11
 
 
 
- 

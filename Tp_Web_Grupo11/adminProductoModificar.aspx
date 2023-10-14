@@ -8,46 +8,46 @@
             <div class="col-6">
                 <div class="mb-3">
                     <label for="txtId" class="form-label">Id</label>
-                    <asp:TextBox ID="TxtId" CssClass="form-control" runat="server"></asp:TextBox>
-
+                    <asp:TextBox ID="TxtId" CssClass="form-control" runat="server" ReadOnly="true" Enabled="false" Visible="false"></asp:TextBox>
                 </div>
+
                 <div class="mb-3">
                     <label for="txtCodigo" class="form-label">Codigo</label>
                     <asp:TextBox ID="TxtCodigo" CssClass="form-control" runat="server"></asp:TextBox>
-
                 </div>
+
                 <div class="mb-3">
                     <label for="txtNombre" class="form-label">Nombre</label>
                     <asp:TextBox ID="TxtNombre" CssClass="form-control" runat="server"></asp:TextBox>
-
                 </div>
+
                 <div class="mb-3">
                     <label for="txtDescripcion" class="form-label">Descripcion</label>
                     <asp:TextBox ID="TxtDescripcion" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
-
                 </div>
+
                 <div class="mb-3">
                     <label for="txtMarca" class="form-label">Marca</label>
                     <asp:DropDownList ID="ddMarca" CssClass="form-select" runat="server"></asp:DropDownList>
-
                 </div>
+
                 <div class="mb-3">
                     <label for="txtCategoria" class="form-label">Categoria</label>
                     <asp:DropDownList ID="ddCategoria" CssClass="form-select" runat="server"></asp:DropDownList>
-
                 </div>
+
                 <div class="mb-3">
                     <label for="txtImagenUrl" class="form-label">Url Imagen</label>
                     <asp:TextBox ID="txtImagenUrl" CssClass="form-control" runat="server"></asp:TextBox>
-
                 </div>
+
                 <div class="mb-3">
                     <label for="txtPrecio" class="form-label">Precio</label>
                     <asp:TextBox ID="TxtPrecio" CssClass="form-control" runat="server"></asp:TextBox>
-
                 </div>
+
                 <div class="mb-3">
-                    <asp:Button ID="btnAceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary" runat="server" Text="Aceptar" />
+                    <asp:Button ID="btnModificar" OnClick="btnModificar_Click" CssClass="btn btn-primary" runat="server" Text="Modificar" />
                     <asp:Button ID="btnEliminar" OnClick="btnEliminar_Click" CssClass="btn btn-primary" runat="server" Text="Eliminar" />
                     <a href="admin.aspx" cssclass="btn btn-primary">Cancelar</a>
                 </div>
